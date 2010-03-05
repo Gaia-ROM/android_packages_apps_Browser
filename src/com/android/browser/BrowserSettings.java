@@ -84,6 +84,9 @@ class BrowserSettings extends Observable {
     private boolean landscapeOnly;
     private boolean loadsPageInOverviewMode;
     private boolean showDebugSettings;
+    private boolean showZoomControls = true;
+    private boolean fullScreen = false;
+    
     // HTML5 API flags
     private boolean appCacheEnabled;
     private boolean databaseEnabled;
@@ -229,6 +232,8 @@ class BrowserSettings extends Observable {
             s.setSavePassword(b.rememberPasswords);
             s.setLoadWithOverviewMode(b.loadsPageInOverviewMode);
             s.setPageCacheCapacity(pageCacheCapacity);
+            
+            s.showZoomControls(b.showZoomControls);
 
             // WebView inside Browser doesn't want initial focus to be set.
             s.setNeedInitialFocus(false);
@@ -349,6 +354,9 @@ class BrowserSettings extends Observable {
         
         userAgent = Integer.parseInt(p.getString("web_ua", "0"));
         customUA  = p.getString("custom_ua", "");
+
+        showZoomControls = p.getBoolean("show_zoom_controls", showZoomControls);
+        fullScreen = p.getBoolean("full_screen_mode", fullScreen);
         
         loadsPageInOverviewMode = p.getBoolean("load_page",
                 loadsPageInOverviewMode);
@@ -413,7 +421,11 @@ class BrowserSettings extends Observable {
 
         update();
     }
-
+    
+    public boolean isFullScreen() {
+        return fullScreen;
+    }
+    
     public String getHomePage() {
         return homeUrl;
     }
