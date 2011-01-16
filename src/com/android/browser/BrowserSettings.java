@@ -146,6 +146,8 @@ class BrowserSettings extends Observable {
             "default_text_encoding";
     public final static String PREF_CLEAR_GEOLOCATION_ACCESS =
             "privacy_clear_geolocation_access";
+    
+	public final static String PREF_CUSTOM_USER_AGENT = "custom_ua";
 
     private static final String DESKTOP_USERAGENT = "Mozilla/5.0 (Macintosh; " +
             "U; Intel Mac OS X 10_6_3; en-us) AppleWebKit/533.16 (KHTML, " +
