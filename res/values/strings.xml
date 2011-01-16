@@ -752,5 +752,24 @@
     <string name="error_console_header_text_maximized" translatable="false">JavaScript console</string>
     <string name="error_console_eval_text_hint" translatable="false">Evaluate JavaScript</string>
     <string name="error_console_eval_button_text" translatable="false">Evaluate</string>
+    
+    <string name="pref_ua_title">User Agent</string>
+    <string name="pref_ua_dialog">Select user agent</string>
+
+    <string-array name="pref_ua">
+        <item>Android</item>
+        <item>Desktop</item>
+        <item>iPhone</item>
+        <item>Internet Explorer 6</item>
+        <item>Custom..</item>
+    </string-array>
+    
+    <string-array name="pref_ua_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 
 </resources>

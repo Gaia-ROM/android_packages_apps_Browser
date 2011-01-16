@@ -106,6 +106,7 @@ class BrowserSettings extends Observable {
         WebSettings.LayoutAlgorithm.NARROW_COLUMNS;
     private boolean useWideViewPort = true;
     private int userAgent = 0;
+    private String customUA = "";
     private boolean tracing = false;
     private boolean lightTouch = false;
     private boolean navDump = false;
@@ -161,6 +162,8 @@ class BrowserSettings extends Observable {
     private static final String FROYO_USERAGENT = "Mozilla/5.0 (Linux; U; " +
             "Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 " +
             "(KHTML, like Gecko) Version/4.0 Mobile Safari/533.1";
+    
+	private static final String IE6_USERAGENT = "Mozilla/4.0 (compatible; MSIE 6.1; Windows XP)";
 
     // Value to truncate strings when adding them to a TextView within
     // a ListView
@@ -201,9 +204,9 @@ class BrowserSettings extends Observable {
             } else if (b.userAgent == 2) {
                 s.setUserAgentString(IPHONE_USERAGENT);
             } else if (b.userAgent == 3) {
-                s.setUserAgentString(IPAD_USERAGENT);
-            } else if (b.userAgent == 4) {
-                s.setUserAgentString(FROYO_USERAGENT);
+                s.setUserAgentString(IE6_USERAGENT);
+            } else {
+            	s.setUserAgentString(b.customUA);
             }
             s.setUseWideViewPort(b.useWideViewPort);
             s.setLoadsImagesAutomatically(b.loadsImagesAutomatically);
@@ -341,8 +344,13 @@ class BrowserSettings extends Observable {
         zoomDensity = WebSettings.ZoomDensity.valueOf(
                 p.getString(PREF_DEFAULT_ZOOM, zoomDensity.name()));
         autoFitPage = p.getBoolean("autofit_pages", autoFitPage);
+        
+        userAgent = Integer.parseInt(p.getString("web_ua", "0"));
+        customUA  = p.getString("custom_ua", "");
+        
         loadsPageInOverviewMode = p.getBoolean("load_page",
                 loadsPageInOverviewMode);
+        
         boolean landscapeOnlyTemp =
                 p.getBoolean("landscape_only", landscapeOnly);
         if (landscapeOnlyTemp != landscapeOnly) {
